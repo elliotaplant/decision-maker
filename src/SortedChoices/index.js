@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import asyncMergeSort from 'async-merge-sort';
+import React from 'react';
 import styled from 'styled-components';
 
 const Choice = styled.li `
