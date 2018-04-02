@@ -3,7 +3,12 @@ import './App.css';
 import AddChoices from './AddChoices';
 import CompareChoices from './CompareChoices';
 import SortedChoices from './SortedChoices';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
+
+
+const theme = {
+  fontSize1: '25px',
+};
 
 const AppContainer = styled.div `
   display: flex;
@@ -20,6 +25,7 @@ const AppHeader = styled.header `
 `;
 
 const LowerHalfContainer = styled.div `
+  width: 100%;
   max-width: 850px;
   margin: 0 auto;
 `;
@@ -31,7 +37,7 @@ class App extends Component {
       choice: '',
       choices: [],
       addingChoices: true,
-      sorted: null,
+      sorted: null
     };
     this.updateChoice = this.updateChoice.bind(this);
     this.addDecision = this.addDecision.bind(this);
@@ -49,7 +55,7 @@ class App extends Component {
       this.state.choice,
     ];
     choices = Array.from(new Set(choices));
-    this.setState({choice: '', choices});
+    this.setState({choice: '', choices,});
   }
 
   transitionToDeciding() {
@@ -77,14 +83,16 @@ class App extends Component {
 
   render() {
     return (
-      <AppContainer>
-        <AppHeader>
-          <h1 className="App-title">Decision Maker 5000</h1>
-        </AppHeader>
-        <LowerHalfContainer>
-          {this.lowerHalf()}
-        </LowerHalfContainer>
-      </AppContainer>
+      <ThemeProvider theme={theme}>
+        <AppContainer>
+          <AppHeader>
+            <h1 className="App-title">Decision Maker 5000</h1>
+          </AppHeader>
+          <LowerHalfContainer>
+            {this.lowerHalf()}
+          </LowerHalfContainer>
+        </AppContainer>
+      </ThemeProvider>
     );
   }
 }
