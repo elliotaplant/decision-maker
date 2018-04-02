@@ -41,8 +41,8 @@ class CompareChoices extends Component {
           a: choiceA,
           b: choiceB,
         },
-        chooseA: () => sortOrder(null, 1),
-        chooseB: () => sortOrder(null, -1),
+        chooseA: () => sortOrder(null, -1),
+        chooseB: () => sortOrder(null, 1),
       });
     }, (error, sorted) => {
       if (error) {

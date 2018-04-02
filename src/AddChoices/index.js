@@ -27,6 +27,10 @@ const ChoiceButton = styled.button `
   &:hover {
     background: ${props => props.theme.primaryColor};
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const DecisionChoicesDivider = styled.hr`
@@ -41,7 +45,7 @@ const AddChoices = (props) => {
 
   function handleEnterKey(e) {
     if (e.key === 'Enter') {
-      props.addDecision();
+      props.addChoice();
     }
   }
 
@@ -49,12 +53,12 @@ const AddChoices = (props) => {
     <div>
       <h4>To get started, add your choices here:</h4>
       <ChoiceInput
-        placeholder="Add Option"
+        placeholder="Type option here"
         onChange={props.updateChoice}
         value={props.choice}
         onKeyPress={handleEnterKey}/>
-      <ChoiceButton onClick={props.addDecision}>Add Choice</ChoiceButton>
-      <ChoiceButton onClick={props.transitionToDeciding}>Start Deciding</ChoiceButton>
+      <ChoiceButton onClick={props.addChoice}>Add Option</ChoiceButton>
+      {props.choices.length > 1 && <ChoiceButton onClick={props.transitionToDeciding}>Start Deciding</ChoiceButton>}
       <DecisionChoicesDivider />
       {props.choices.map(choice => <div key={choice}>{choice}</div>)}
     </div>

@@ -42,7 +42,7 @@ class App extends Component {
       sorted: null
     };
     this.updateChoice = this.updateChoice.bind(this);
-    this.addDecision = this.addDecision.bind(this);
+    this.addChoice = this.addChoice.bind(this);
     this.transitionToDeciding = this.transitionToDeciding.bind(this);
     this.showSorted = this.showSorted.bind(this);
   }
@@ -51,7 +51,7 @@ class App extends Component {
     this.setState({choice: e.target.value});
   }
 
-  addDecision() {
+  addChoice() {
     let choices = [
       ...this.state.choices,
       this.state.choice,
@@ -74,7 +74,7 @@ class App extends Component {
     } else if (this.state.addingChoices) {
       return <AddChoices
         updateChoice={this.updateChoice}
-        addDecision={this.addDecision}
+        addChoice={this.addChoice}
         transitionToDeciding={this.transitionToDeciding}
         choices={this.state.choices}
         choice={this.state.choice}/>;
