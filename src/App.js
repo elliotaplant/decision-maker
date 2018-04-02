@@ -35,14 +35,16 @@ const LowerHalfContainer = styled.div `
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.originalState = {
       choices: [],
       addingChoices: true,
       sorted: null
     };
+    this.state = this.originalState;
     this.addChoice = this.addChoice.bind(this);
     this.transitionToDeciding = this.transitionToDeciding.bind(this);
     this.showSorted = this.showSorted.bind(this);
+    this.tryAgain = this.tryAgain.bind(this);
   }
 
 
@@ -66,9 +68,13 @@ class App extends Component {
     this.setState({sorted});
   }
 
+  tryAgain() {
+    this.setState(this.originalState);
+  }
+
   lowerHalf() {
     if (this.state.sorted) {
-      return <SortedChoices choices={this.state.sorted}/>;
+      return <SortedChoices choices={this.state.sorted} tryAgain={this.tryAgain}/>;
     } else if (this.state.addingChoices) {
       return <AddChoices
         addChoice={this.addChoice}
