@@ -7,7 +7,7 @@ const Choice = styled.div `
   padding: 10px;
   border: 2px solid ${props => props.theme.primaryColor};
   border-radius: ${props => props.theme.borderRadius};
-  margin: 0 10px;
+  margin: 10px;
 
 
   &:hover {
@@ -17,7 +17,7 @@ const Choice = styled.div `
 
 const ChoiceContainer = styled.div `
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 `;
 

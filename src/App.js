@@ -47,12 +47,15 @@ class App extends Component {
 
 
   addChoice(choice) {
-    let choices = [
-      ...this.state.choices,
-      choice,
-    ];
-    choices = Array.from(new Set(choices));
-    this.setState({choices});
+    console.log('choice', choice);
+    this.setState(state => {
+      let choices = [
+        ...state.choices,
+        choice,
+      ];
+      choices = Array.from(new Set(choices));
+      return {choices};
+    });
   }
 
   transitionToDeciding() {
