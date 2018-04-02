@@ -18,8 +18,8 @@ const AddChoices = (props) => {
         onChange={props.updateChoice}
         value={props.choice}
         onKeyPress={handleEnterKey}/>
-      <button onClick={props.addDecision}>Add</button>
-      <button onClick={props.transitionToDeciding}>Done</button>
+      <button onClick={props.addDecision}>Add Choice</button>
+      <button onClick={props.transitionToDeciding}>Start Deciding</button>
       {props.choices.map(choice => <div key={choice}>{choice}</div>)}
     </div>
   )

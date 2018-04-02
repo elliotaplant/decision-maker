@@ -1,5 +1,25 @@
 import React, {Component} from 'react';
 import asyncMergeSort from 'async-merge-sort';
+import styled from 'styled-components';
+
+const Choice = styled.div `
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid aliceblue;
+  border-radius: 3px;
+  margin: 0 10px;
+
+
+  &:hover {
+    background: aliceblue;
+  }
+`;
+
+const ChoiceContainer = styled.div `
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
 class CompareChoices extends Component {
   constructor(props) {
@@ -15,7 +35,7 @@ class CompareChoices extends Component {
   }
 
   componentDidMount() {
-    asyncMergeSort(props.choices, (choiceA, choiceB, sortOrder) => {
+    asyncMergeSort(this.props.choices, (choiceA, choiceB, sortOrder) => {
       this.setState({
         showingChoices: {
           a: choiceA,
@@ -36,8 +56,10 @@ class CompareChoices extends Component {
     return (
       <div>
         <p>Click the choice you prefer</p>
-        <div onClick={this.state.chooseA}>{this.state.showingChoices.a}</div>
-        <div onClick={this.state.chooseB}>{this.state.showingChoices.b}</div>
+        <ChoiceContainer>
+          <Choice onClick={this.state.chooseA}>{this.state.showingChoices.a}</Choice>
+          <Choice onClick={this.state.chooseB}>{this.state.showingChoices.b}</Choice>
+        </ChoiceContainer>
       </div>
     );
   }
