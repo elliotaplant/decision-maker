@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import AddChoices from './AddChoices';
+import CompareChoices from './CompareChoices';
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class App extends Component {
                 transitionToDeciding={this.transitionToDeciding}
                 choices={this.state.choices}
                 choice={this.state.choice}/>
-            : <div>Moo</div>
+            : <CompareChoices choices={this.state.choices}/>
         }
       </div>
     );
