@@ -1,18 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import AddChoices from './AddChoices';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      choice: '',
+      choices: [],
+      addingChoices: true,
+    };
+    this.updateChoice = this.updateChoice.bind(this);
+    this.addDecision = this.addDecision.bind(this);
+    this.transitionToDeciding = this.transitionToDeciding.bind(this);
+  }
+
+  updateChoice(e) {
+    this.setState({choice: e.target.value});
+  }
+
+  addDecision() {
+    const choices = [
+      ...this.state.choices,
+      this.state.choice,
+    ];
+    this.setState({choice: '', choices});
+  }
+
+  transitionToDeciding() {
+    this.setState({addingChoices: false});
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Decision Maker</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {
+          this.state.addingChoices
+            ? <AddChoices
+                updateChoice={this.updateChoice}
+                addDecision={this.addDecision}
+                transitionToDeciding={this.transitionToDeciding}
+                choices={this.state.choices}
+                choice={this.state.choice}/>
+            : <div>Moo</div>
+        }
       </div>
     );
   }
