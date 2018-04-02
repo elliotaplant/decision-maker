@@ -36,28 +36,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      choice: '',
       choices: [],
       addingChoices: true,
       sorted: null
     };
-    this.updateChoice = this.updateChoice.bind(this);
     this.addChoice = this.addChoice.bind(this);
     this.transitionToDeciding = this.transitionToDeciding.bind(this);
     this.showSorted = this.showSorted.bind(this);
   }
 
-  updateChoice(e) {
-    this.setState({choice: e.target.value});
-  }
 
-  addChoice() {
+  addChoice(choice) {
     let choices = [
       ...this.state.choices,
-      this.state.choice,
+      choice,
     ];
     choices = Array.from(new Set(choices));
-    this.setState({choice: '', choices,});
+    this.setState({choices});
   }
 
   transitionToDeciding() {
@@ -73,11 +68,9 @@ class App extends Component {
       return <SortedChoices choices={this.state.sorted}/>;
     } else if (this.state.addingChoices) {
       return <AddChoices
-        updateChoice={this.updateChoice}
         addChoice={this.addChoice}
         transitionToDeciding={this.transitionToDeciding}
-        choices={this.state.choices}
-        choice={this.state.choice}/>;
+        choices={this.state.choices}/>;
     } else {
       return <CompareChoices choices={this.state.choices} showSorted={this.showSorted}/>;
     }

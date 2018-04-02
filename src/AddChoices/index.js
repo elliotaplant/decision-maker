@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 
-const ChoiceInput = styled.input`
+const ChoiceInput = styled.input `
   display: block;
   width: 100%;
   border-radius: ${props => props.theme.borderRadius};
@@ -33,7 +33,7 @@ const ChoiceButton = styled.button `
   }
 `;
 
-const DecisionChoicesDivider = styled.hr`
+const DecisionChoicesDivider = styled.hr `
   height: 1px;
   border: 0;
   border-bottom: 1px solid #bbb;
@@ -41,28 +41,52 @@ const DecisionChoicesDivider = styled.hr`
   margin: 20px auto;
 `
 
-const AddChoices = (props) => {
+class AddChoices extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      choice: ''
+    }
 
-  function handleEnterKey(e) {
+    this.addChoice = this.addChoice.bind(this);
+    this.updateChoice = this.updateChoice.bind(this);
+    this.handleEnterKey = this.handleEnterKey.bind(this);
+    this.rosalindFranklin = this.rosalindFranklin.bind(this);
+  }
+
+  updateChoice(e) {
+    this.setState({choice: e.target.value});
+  }
+
+  handleEnterKey(e) {
     if (e.key === 'Enter') {
-      props.addChoice();
+      this.addChoice();
     }
   }
 
-  return (
-    <div>
-      <h4>To get started, add your choices here:</h4>
-      <ChoiceInput
-        placeholder="Type option here"
-        onChange={props.updateChoice}
-        value={props.choice}
-        onKeyPress={handleEnterKey}/>
-      <ChoiceButton onClick={props.addChoice}>Add Option</ChoiceButton>
-      {props.choices.length > 1 && <ChoiceButton onClick={props.transitionToDeciding}>Start Deciding</ChoiceButton>}
-      <DecisionChoicesDivider />
-      {props.choices.map(choice => <div key={choice}>{choice}</div>)}
-    </div>
-  )
+  addChoice() {
+    this.props.addChoice(this.state.choice);
+    this.setState({choice: ''});
+  }
+
+  rosalindFranklin() {}
+
+  render() {
+    return (
+      <div>
+        <h4>To get started, add your choices here:</h4>
+        <ChoiceInput
+          placeholder="Type option here"
+          onChange={this.updateChoice}
+          value={this.state.choice}
+          onKeyPress={this.handleEnterKey}/>
+        <ChoiceButton onClick={this.addChoice}>Add Option</ChoiceButton>
+        {this.props.choices.length > 1 && <ChoiceButton onClick={this.props.transitionToDeciding}>Start Deciding</ChoiceButton>}
+        <ChoiceButton onClick={this.rosalindFranklin}>I'm from Rosalind Franklin</ChoiceButton>
+        <DecisionChoicesDivider/> {this.props.choices.map(choice => <div key={choice}>{choice}</div>)}
+      </div>
+    );
+  }
 
 }
 
