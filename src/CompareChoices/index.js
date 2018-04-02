@@ -55,7 +55,7 @@ class CompareChoices extends Component {
   render() {
     return (
       <div>
-        <p>Click the choice you prefer</p>
+        <h4>Click the choice you prefer</h4>
         <ChoiceContainer>
           <Choice onClick={this.state.chooseA}>{this.state.showingChoices.a}</Choice>
           <Choice onClick={this.state.chooseB}>{this.state.showingChoices.b}</Choice>

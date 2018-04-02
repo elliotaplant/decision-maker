@@ -10,9 +10,7 @@ const AddChoices = (props) => {
 
   return (
     <div>
-      <p>
-        To get started, add your choices here:
-      </p>
+      <h4>To get started, add your choices here:</h4>
       <input
         placeholder="Add Option"
         onChange={props.updateChoice}

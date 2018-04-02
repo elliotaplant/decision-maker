@@ -2,17 +2,35 @@ import React, {Component} from 'react';
 import './App.css';
 import AddChoices from './AddChoices';
 import CompareChoices from './CompareChoices';
+import SortedChoices from './SortedChoices';
+import styled from 'styled-components';
+
+const AppContainer = styled.div `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+`;
+
+const AppHeader = styled.header `
+  background-color: #222;
+  padding: 20px;
+  color: white;
+  margin-bottom: 3vh;
+`;
+
+const LowerHalfContainer = styled.div `
+  max-width: 850px;
+  margin: 0 auto;
+`;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       choice: '',
-      choices: [
-        '1A 9 MED SURG NEURO - EM VACATION * FM/ PC PEDS OB/ GYN PSYCH',
-        '1B 8 MED SURG EM - NEURO VACATION PEDS * FM/ PC PSYCH OB/ GYN'
-      ],
-      addingChoices: false,
+      choices: [],
+      addingChoices: true,
       sorted: null,
     };
     this.updateChoice = this.updateChoice.bind(this);
@@ -26,10 +44,11 @@ class App extends Component {
   }
 
   addDecision() {
-    const choices = [
+    let choices = [
       ...this.state.choices,
       this.state.choice,
     ];
+    choices = Array.from(new Set(choices));
     this.setState({choice: '', choices});
   }
 
@@ -43,7 +62,7 @@ class App extends Component {
 
   lowerHalf() {
     if (this.state.sorted) {
-      return this.state.sorted.map(choice => (<div key={choice}>{choice}</div>));
+      return <SortedChoices choices={this.state.sorted}/>;
     } else if (this.state.addingChoices) {
       return <AddChoices
         updateChoice={this.updateChoice}
@@ -58,12 +77,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <AppContainer>
+        <AppHeader>
           <h1 className="App-title">Decision Maker 5000</h1>
-        </header>
-        {this.lowerHalf()}
-      </div>
+        </AppHeader>
+        <LowerHalfContainer>
+          {this.lowerHalf()}
+        </LowerHalfContainer>
+      </AppContainer>
     );
   }
 }
