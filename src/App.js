@@ -8,6 +8,8 @@ import styled, {ThemeProvider} from 'styled-components';
 
 const theme = {
   fontSize1: '25px',
+  borderRadius: '10px',
+  primaryColor: '#ADD8E6',
 };
 
 const AppContainer = styled.div `

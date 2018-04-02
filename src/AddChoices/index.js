@@ -4,24 +4,28 @@ import styled from 'styled-components';
 const ChoiceInput = styled.input`
   display: block;
   width: 100%;
-  border-radius: 3px;
+  border-radius: ${props => props.theme.borderRadius};
   box-shadow: none;
-  border: 2px solid aliceblue
+  border: 2px solid ${props => props.theme.primaryColor}
   padding: 10px;
   margin-bottom: 10px;
   font-size: ${props => props.theme.fontSize1}
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const ChoiceButton = styled.button `
   cursor: pointer;
   padding: 10px;
-  border: 2px solid aliceblue;
-  border-radius: 3px;
+  border: 2px solid ${props => props.theme.primaryColor};
+  border-radius: ${props => props.theme.borderRadius};
   margin: 0 10px;
   font-size: ${props => props.theme.fontSize1}
 
   &:hover {
-    background: aliceblue;
+    background: ${props => props.theme.primaryColor};
   }
 `;
 
@@ -29,6 +33,8 @@ const DecisionChoicesDivider = styled.hr`
   height: 1px;
   border: 0;
   border-bottom: 1px solid #bbb;
+  width: 100px;
+  margin: 20px auto;
 `
 
 const AddChoices = (props) => {

@@ -5,13 +5,13 @@ import styled from 'styled-components';
 const Choice = styled.div `
   cursor: pointer;
   padding: 10px;
-  border: 2px solid aliceblue;
-  border-radius: 3px;
+  border: 2px solid ${props => props.theme.primaryColor};
+  border-radius: ${props => props.theme.borderRadius};
   margin: 0 10px;
 
 
   &:hover {
-    background: aliceblue;
+    background: ${props => props.theme.primaryColor};
   }
 `;
 
